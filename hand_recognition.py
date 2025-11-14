@@ -58,6 +58,8 @@ def get_grid_cell(x, y, width, height):
 
 def process_frame(frame):
     """Process frame and detect hand pointing"""
+    global last_selected_cell, last_cell_select_time, last_click_time
+
     frame_height, frame_width, _ = frame.shape
     rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     output = hand_detector.process(rgb_frame)
