@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 import cv2
 import mediapipe as mp
 import numpy as np
@@ -35,6 +35,11 @@ last_click_time = 0
 click_cooldown = 0.5
 click_threshold = 20
 
+# Statistics
+frame_count = 0
+last_fps_time = time.time()
+fps = 0
+
 def get_grid_cell(x, y, width, height):
     """Determine which grid cell contains the given coordinates"""
     row_height = height / grid_rows
@@ -56,9 +61,42 @@ def get_grid_cell(x, y, width, height):
             col = other_row_cols - 1
         return (row, col, other_row_cols)
 
+def draw_grid(frame):
+    """Draw grid overlay on frame"""
+    height, width, _ = frame.shape
+    row_height = height / grid_rows
+    
+    # Draw horizontal lines
+    for i in range(1, grid_rows):
+        y = int(i * row_height)
+        cv2.line(frame, (0, y), (width, y), (255, 255, 255), 1)
+    
+    # Draw vertical lines for first row
+    col_width = width / first_row_cols
+    for i in range(1, first_row_cols):
+        x = int(i * col_width)
+        y_end = int(row_height)
+        cv2.line(frame, (x, 0), (x, y_end), (255, 255, 255), 1)
+    
+    # Draw vertical lines for other rows
+    col_width = width / other_row_cols
+    for i in range(1, other_row_cols):
+        x = int(i * col_width)
+        y_start = int(row_height)
+        cv2.line(frame, (x, y_start), (x, height), (255, 255, 255), 1)
+
 def process_frame(frame):
     """Process frame and detect hand pointing"""
     global last_selected_cell, last_cell_select_time, last_click_time
+    global frame_count, last_fps_time, fps
+
+    # Calculate FPS
+    frame_count += 1
+    current_time = time.time()
+    if current_time - last_fps_time >= 1.0:
+        fps = frame_count / (current_time - last_fps_time)
+        frame_count = 0
+        last_fps_time = current_time
 
     frame_height, frame_width, _ = frame.shape
     rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -69,12 +107,25 @@ def process_frame(frame):
         'hand_detected': False,
         'cell': None,
         'click': False,
-        'timestamp': time.time()
+        'timestamp': time.time(),
+        'fps': round(fps, 1)
     }
+    
+    # Draw grid
+    draw_grid(frame)
     
     if hands:
         hand = hands[0]
         landmarks = hand.landmark
+        
+        # Draw hand landmarks
+        drawing_utils.draw_landmarks(
+            frame, 
+            hand, 
+            mp.solutions.hands.HAND_CONNECTIONS,
+            drawing_utils.DrawingSpec(color=(0, 255, 0), thickness=2),
+            drawing_utils.DrawingSpec(color=(0, 0, 255), thickness=2)
+        )
         
         # Get index finger tip (landmark 8)
         index_finger = landmarks[8]
@@ -84,6 +135,7 @@ def process_frame(frame):
         # Get current cell
         current_cell = get_grid_cell(frame_index_x, frame_index_y, frame_width, frame_height)
         current_time = time.time()
+        
         if current_cell != last_selected_cell and (current_time - last_cell_select_time) > cell_select_cooldown:
             print(f"Selected cell: Row {current_cell[0]}, Column {current_cell[1]} (Total cols in row: {current_cell[2]})")
             last_selected_cell = current_cell
@@ -98,8 +150,9 @@ def process_frame(frame):
         distance = ((frame_index_x - frame_thumb_x)**2 + 
                    (frame_index_y - frame_thumb_y)**2)**0.5
         
-        current_time = time.time()
-        if distance < click_threshold and (current_time - last_click_time) > click_cooldown:
+        # Check for click gesture
+        is_clicking = distance < click_threshold
+        if is_clicking and (current_time - last_click_time) > click_cooldown:
             print(f"Click detected at cell: Row {current_cell[0]}, Column {current_cell[1]}")
             last_click_time = current_time
         
@@ -109,16 +162,47 @@ def process_frame(frame):
             'col': current_cell[1],
             'total_cols': current_cell[2]
         }
-        result['click'] = distance < click_threshold
+        result['click'] = is_clicking
         result['finger_distance'] = int(distance)
         
-        # Draw on frame for visualization
+        # Draw finger positions
         cv2.circle(frame, (frame_index_x, frame_index_y), 10, (0, 255, 255), -1)
         cv2.circle(frame, (frame_thumb_x, frame_thumb_y), 10, (0, 255, 255), -1)
+        cv2.line(frame, (frame_index_x, frame_index_y), (frame_thumb_x, frame_thumb_y), (255, 0, 255), 2)
         
-        if result['click']:
+        # Highlight selected cell
+        if current_cell:
+            row, col, total_cols = current_cell
+            row_height = frame_height / grid_rows
+            if row == 0:
+                col_width = frame_width / first_row_cols
+            else:
+                col_width = frame_width / other_row_cols
+            
+            x1 = int(col * col_width)
+            y1 = int(row * row_height)
+            x2 = int((col + 1) * col_width)
+            y2 = int((row + 1) * row_height)
+            
+            color = (0, 255, 0) if is_clicking else (255, 255, 0)
+            cv2.rectangle(frame, (x1, y1), (x2, y2), color, 3)
+        
+        # Display click status
+        if is_clicking:
             cv2.putText(frame, "CLICK!", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 
                        1, (0, 255, 0), 3)
+        
+        # Display cell info
+        cv2.putText(frame, f"Cell: R{current_cell[0]} C{current_cell[1]}", 
+                   (50, frame_height - 60), cv2.FONT_HERSHEY_SIMPLEX, 
+                   0.7, (255, 255, 255), 2)
+        cv2.putText(frame, f"Distance: {int(distance)}", 
+                   (50, frame_height - 30), cv2.FONT_HERSHEY_SIMPLEX, 
+                   0.7, (255, 255, 255), 2)
+    
+    # Display FPS
+    cv2.putText(frame, f"FPS: {fps:.1f}", (frame_width - 150, 30), 
+               cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
     
     return result, frame
 
@@ -143,12 +227,6 @@ def video_feed():
             latest_frame = processed_frame
             latest_result = result
         
-        # Log detection
-        if result['hand_detected']:
-            cell = result['cell']
-            print(f"Hand detected at Row {cell['row']}, Col {cell['col']} "
-                  f"{'[CLICK]' if result['click'] else ''}")
-        
         return jsonify(result), 200
         
     except Exception as e:
@@ -163,11 +241,49 @@ def get_latest_result():
             return jsonify({'error': 'No data available'}), 404
         return jsonify(latest_result), 200
 
+@app.route('/video_stream')
+def video_stream():
+    """Stream processed video frames"""
+    def generate():
+        while True:
+            with frame_lock:
+                if latest_frame is not None:
+                    ret, buffer = cv2.imencode('.jpg', latest_frame)
+                    frame = buffer.tobytes()
+                    yield (b'--frame\r\n'
+                           b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+            time.sleep(0.033)  # ~30 FPS
+    
+    return Response(generate(),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+
 @app.route('/health', methods=['GET'])
 def health():
     """Health check endpoint"""
     return jsonify({'status': 'healthy', 'timestamp': time.time()}), 200
 
+@app.route('/')
+def index():
+    """Simple web interface"""
+    return '''
+    <html>
+    <head><title>Hand Gesture Recognition</title></head>
+    <body style="background-color: #222; color: white; font-family: Arial;">
+        <h1>Hand Gesture Recognition Stream</h1>
+        <img src="/video_stream" width="640" height="480">
+        <p>Server is running. ESP32-CAM should send frames to /video_feed</p>
+    </body>
+    </html>
+    '''
+
 if __name__ == '__main__':
-    # Run on all interfaces so ESP32 can access it
+    print("\n" + "="*50)
+    print("Hand Gesture Recognition Server")
+    print("="*50)
+    print("\nMake sure to update the ESP32 code with this computer's IP address")
+    print("You can find it by running 'ipconfig' (Windows) or 'ifconfig' (Linux/Mac)")
+    print("\nServer starting on http://0.0.0.0:5000")
+    print("View the stream at http://localhost:5000")
+    print("="*50 + "\n")
+    
     app.run(host='0.0.0.0', port=5000, debug=True, threaded=True)
