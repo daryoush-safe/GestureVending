@@ -7,11 +7,13 @@ from threading import Lock
 
 app = Flask(__name__)
 
-# Configure hand detector
+# Configure hand detector with optimized settings
 hand_detector = mp.solutions.hands.Hands(
+    static_image_mode=False,
     max_num_hands=1,
-    min_detection_confidence=0.7,
-    min_tracking_confidence=0.7
+    min_detection_confidence=0.5,
+    min_tracking_confidence=0.5,
+    model_complexity=0  # Use lighter model for speed
 )
 
 drawing_utils = mp.solutions.drawing_utils
@@ -99,6 +101,13 @@ def process_frame(frame):
         last_fps_time = current_time
 
     frame_height, frame_width, _ = frame.shape
+    
+    # Resize for faster processing if frame is large
+    if frame_width > 640:
+        scale = 640 / frame_width
+        frame = cv2.resize(frame, None, fx=scale, fy=scale)
+        frame_height, frame_width, _ = frame.shape
+    
     rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     output = hand_detector.process(rgb_frame)
     hands = output.multi_hand_landmarks
@@ -111,21 +120,15 @@ def process_frame(frame):
         'fps': round(fps, 1)
     }
     
-    # Draw grid
+    # Draw grid (lightweight version)
     draw_grid(frame)
     
     if hands:
         hand = hands[0]
         landmarks = hand.landmark
         
-        # Draw hand landmarks
-        drawing_utils.draw_landmarks(
-            frame, 
-            hand, 
-            mp.solutions.hands.HAND_CONNECTIONS,
-            drawing_utils.DrawingSpec(color=(0, 255, 0), thickness=2),
-            drawing_utils.DrawingSpec(color=(0, 0, 255), thickness=2)
-        )
+        # Skip drawing landmarks for speed - just draw key points
+        # drawing_utils.draw_landmarks(frame, hand, mp.solutions.hands.HAND_CONNECTIONS)
         
         # Get index finger tip (landmark 8)
         index_finger = landmarks[8]
@@ -137,7 +140,7 @@ def process_frame(frame):
         current_time = time.time()
         
         if current_cell != last_selected_cell and (current_time - last_cell_select_time) > cell_select_cooldown:
-            print(f"Selected cell: Row {current_cell[0]}, Column {current_cell[1]} (Total cols in row: {current_cell[2]})")
+            print(f"Cell: R{current_cell[0]} C{current_cell[1]}")
             last_selected_cell = current_cell
             last_cell_select_time = current_time
         
@@ -153,7 +156,7 @@ def process_frame(frame):
         # Check for click gesture
         is_clicking = distance < click_threshold
         if is_clicking and (current_time - last_click_time) > click_cooldown:
-            print(f"Click detected at cell: Row {current_cell[0]}, Column {current_cell[1]}")
+            print(f"CLICK at R{current_cell[0]} C{current_cell[1]}")
             last_click_time = current_time
         
         result['hand_detected'] = True
@@ -165,9 +168,9 @@ def process_frame(frame):
         result['click'] = is_clicking
         result['finger_distance'] = int(distance)
         
-        # Draw finger positions
-        cv2.circle(frame, (frame_index_x, frame_index_y), 10, (0, 255, 255), -1)
-        cv2.circle(frame, (frame_thumb_x, frame_thumb_y), 10, (0, 255, 255), -1)
+        # Draw minimal visualization
+        cv2.circle(frame, (frame_index_x, frame_index_y), 8, (0, 255, 255), -1)
+        cv2.circle(frame, (frame_thumb_x, frame_thumb_y), 8, (0, 255, 255), -1)
         cv2.line(frame, (frame_index_x, frame_index_y), (frame_thumb_x, frame_thumb_y), (255, 0, 255), 2)
         
         # Highlight selected cell
@@ -185,24 +188,16 @@ def process_frame(frame):
             y2 = int((row + 1) * row_height)
             
             color = (0, 255, 0) if is_clicking else (255, 255, 0)
-            cv2.rectangle(frame, (x1, y1), (x2, y2), color, 3)
+            cv2.rectangle(frame, (x1, y1), (x2, y2), color, 2)
         
         # Display click status
         if is_clicking:
-            cv2.putText(frame, "CLICK!", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 
-                       1, (0, 255, 0), 3)
-        
-        # Display cell info
-        cv2.putText(frame, f"Cell: R{current_cell[0]} C{current_cell[1]}", 
-                   (50, frame_height - 60), cv2.FONT_HERSHEY_SIMPLEX, 
-                   0.7, (255, 255, 255), 2)
-        cv2.putText(frame, f"Distance: {int(distance)}", 
-                   (50, frame_height - 30), cv2.FONT_HERSHEY_SIMPLEX, 
-                   0.7, (255, 255, 255), 2)
+            cv2.putText(frame, "CLICK!", (30, 40), cv2.FONT_HERSHEY_SIMPLEX, 
+                       1, (0, 255, 0), 2)
     
     # Display FPS
-    cv2.putText(frame, f"FPS: {fps:.1f}", (frame_width - 150, 30), 
-               cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+    cv2.putText(frame, f"FPS: {fps:.1f}", (frame_width - 120, 30), 
+               cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
     
     return result, frame
 
