@@ -1,23 +1,23 @@
 #include "WifiCam.hpp"
 #include <WiFi.h>
+#include <WiFiClient.h>
 #include <HTTPClient.h>
-
+using namespace esp32cam;
 static const char* WIFI_SSID = "Kalle mahi khor";
 static const char* WIFI_PASS = "pjtr8569";
-
-/* 🔴 CHANGE THIS */
 static const char* SERVER_IP = "10.143.138.111";
 static const int   SERVER_PORT = 5000;
 
 esp32cam::Resolution initialResolution;
+WiFiClient client;
 
 void setup() {
   Serial.begin(115200);
   Serial.println();
-
+  
   WiFi.mode(WIFI_STA);
   WiFi.begin(WIFI_SSID, WIFI_PASS);
-
+  
   Serial.print("Connecting WiFi");
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -26,48 +26,44 @@ void setup() {
   Serial.println("\nWiFi connected");
   Serial.println(WiFi.localIP());
 
-  using namespace esp32cam;
-
-  initialResolution = Resolution::find(640, 480);
-
+  initialResolution = Resolution::find(320, 240);
+  
   Config cfg;
   cfg.setPins(pins::AiThinker);
   cfg.setResolution(initialResolution);
   cfg.setJpeg(80);
-
+  cfg.setBufferCount(2);  // Double buffering
+  
   if (!Camera.begin(cfg)) {
     Serial.println("Camera init failed");
     ESP.restart();
   }
-
+  
   Serial.println("Camera ready");
 }
 
 void loop() {
-  using namespace esp32cam;
+  if (WiFi.status() == WL_CONNECTED) {
+    auto frame = Camera.capture();
+    if (!frame) return;
 
-  auto frame = Camera.capture();
-  if (!frame) {
-    Serial.println("Capture failed");
-    delay(100);
-    return;
+    HTTPClient http;
+    String serverUrl = "http://" + String(SERVER_IP) + ":" + String(SERVER_PORT) + "/video_feed";
+    
+    http.begin(serverUrl);
+    http.addHeader("Content-Type", "image/jpeg");
+    
+    // This sends the data and waits for the server response properly
+    int httpResponseCode = http.POST(frame->data(), frame->size());
+    
+    if (httpResponseCode > 0) {
+      // Optional: Read response if you want to use the JSON data
+      // String response = http.getString(); 
+    } else {
+      Serial.printf("Error occurred: %s\n", http.errorToString(httpResponseCode).c_str());
+    }
+    
+    http.end(); // Properly close the connection
   }
-
-  HTTPClient http;
-  String url = String("http://") + SERVER_IP + ":" + SERVER_PORT + "/video_feed";
-
-  http.begin(url);
-  http.addHeader("Content-Type", "image/jpeg");
-
-  int httpCode = http.POST(frame->data(), frame->size());
-
-  if (httpCode > 0) {
-    Serial.printf("Sent frame, HTTP %d\n", httpCode);
-  } else {
-    Serial.printf("POST failed: %s\n", http.errorToString(httpCode).c_str());
-  }
-
-  http.end();
-
-  delay(33); // ~30 FPS
+  delay(10); // Small delay to prevent CPU saturation
 }
