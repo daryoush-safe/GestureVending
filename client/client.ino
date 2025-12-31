@@ -62,7 +62,7 @@ void setup() {
   config.pixel_format = PIXFORMAT_JPEG;
 
   // Use QVGA for high FPS over UDP
-  config.frame_size = FRAMESIZE_QVGA; 
+  config.frame_size = FRAMESIZE_VGA; 
   config.jpeg_quality = 12; // 10-15 is good balance
   config.fb_count = 2;
 
