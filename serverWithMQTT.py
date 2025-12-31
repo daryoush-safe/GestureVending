@@ -5,8 +5,48 @@ import numpy as np
 import time
 from threading import Lock, Thread
 import socket
+import paho.mqtt.client as mqtt
+import json
 
 app = Flask(__name__)
+
+# =======================
+# MQTT Configuration
+# =======================
+# Replace with your actual broker address if not using HiveMQ public broker
+MQTT_BROKER = "broker.hivemq.com" 
+MQTT_PORT = 1883
+MQTT_TOPIC_PREFIX = "some_email/vending/led_control"
+MQTT_TOPIC_CONFIG = "vending/config/grid"
+
+mqtt_client = mqtt.Client()
+
+def on_connect(client, userdata, flags, rc):
+    print(f"Connected to MQTT Broker with result code {rc}")
+    # Subscribe to configuration topic for dynamic updates
+    client.subscribe(MQTT_TOPIC_CONFIG)
+
+def on_message(client, userdata, msg):
+    global grid_rows, first_row_cols, other_row_cols
+    try:
+        # Expecting JSON like: {"rows": 6, "first_cols": 5, "other_cols": 10}
+        payload = json.loads(msg.payload.decode())
+        if 'rows' in payload: grid_rows = int(payload['rows'])
+        if 'first_cols' in payload: first_row_cols = int(payload['first_cols'])
+        if 'other_cols' in payload: other_row_cols = int(payload['other_cols'])
+        print(f"Grid updated via MQTT: {grid_rows}x({first_row_cols}/{other_row_cols})")
+    except Exception as e:
+        print(f"Failed to update grid config via MQTT: {e}")
+
+mqtt_client.on_connect = on_connect
+mqtt_client.on_message = on_message
+
+# Start MQTT in a non-blocking way
+try:
+    mqtt_client.connect(MQTT_BROKER, MQTT_PORT, 60)
+    mqtt_client.loop_start()
+except Exception as e:
+    print(f"MQTT Connection Failed: {e}")
 
 # =======================
 # Network Configuration
@@ -16,7 +56,7 @@ UDP_PORT = 5000
 MAX_UDP_PACKET_SIZE = 65536
 
 # =======================
-# Grid Configuration
+# Grid Configuration (Defaults)
 # =======================
 grid_rows = 6
 first_row_cols = 5
@@ -25,7 +65,6 @@ other_row_cols = 10
 # =======================
 # MediaPipe Setup
 # =======================
-# Using model_complexity=0 for fastest performance
 hand_detector = mp.solutions.hands.Hands(
     static_image_mode=False,
     max_num_hands=1,
@@ -52,7 +91,7 @@ last_cell_select_time = 0
 
 last_click_time = 0
 click_cooldown = 0.5
-click_threshold = 30 # Distance threshold for "pinch" to click
+click_threshold = 30 
 
 # =======================
 # FPS statistics
@@ -66,6 +105,11 @@ fps = 0
 # =======================
 def get_grid_cell(x, y, width, height):
     """Determine which grid cell contains the given coordinates"""
+    # Use global variables to allow MQTT updates to affect logic immediately
+    global grid_rows, first_row_cols, other_row_cols
+    
+    if grid_rows == 0: return (0, 0, 1) 
+    
     row_height = height / grid_rows
     
     row = int(y / row_height)
@@ -84,6 +128,8 @@ def get_grid_cell(x, y, width, height):
 
 def draw_grid(frame):
     """Draw grid overlay on frame"""
+    global grid_rows, first_row_cols, other_row_cols
+    
     height, width, _ = frame.shape
     row_height = height / grid_rows
     
@@ -104,10 +150,23 @@ def draw_grid(frame):
         x = int(i * col_width)
         cv2.line(frame, (x, int(row_height)), (x, height), (255, 255, 255), 1)
 
+def calculate_slot_id(row, col):
+    """
+    Calculates a unique ID for the slot based on row and col.
+    Example: Row 0 is 1-5, Row 1 is 6-15, etc.
+    """
+    slot_id = 0
+    if row == 0:
+        slot_id = col + 1
+    else:
+        # Logic: First row count + ((current_row - 1) * cols_per_other_row) + current_col + 1
+        slot_id = first_row_cols + ((row - 1) * other_row_cols) + col + 1
+    return slot_id
+
 def process_frame(frame):
     """Process frame: Detect Hands + Draw Grid + Calculate Interaction"""
     global last_selected_cell, last_cell_select_time, last_click_time
-    global frame_count, last_fps_time, fps
+    global frame_count, last_fps_time, fps, grid_rows, first_row_cols, other_row_cols
 
     # FPS Calculation
     frame_count += 1
@@ -119,13 +178,13 @@ def process_frame(frame):
 
     frame_height, frame_width, _ = frame.shape
 
-    # Resize to 640px width if larger (Consistency & Speed)
+    # Resize to 640px width if larger
     if frame_width > 640:
         scale = 640 / frame_width
         frame = cv2.resize(frame, None, fx=scale, fy=scale)
         frame_height, frame_width, _ = frame.shape
 
-    # MediaPipe Processing (Requires RGB)
+    # MediaPipe Processing
     rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     output = hand_detector.process(rgb_frame)
     hands = output.multi_hand_landmarks
@@ -138,7 +197,6 @@ def process_frame(frame):
         'fps': round(fps, 1)
     }
 
-    # Draw grid
     draw_grid(frame)
 
     if hands:
@@ -151,10 +209,22 @@ def process_frame(frame):
         frame_index_y = int(index_finger.y * frame_height)
 
         current_cell = get_grid_cell(frame_index_x, frame_index_y, frame_width, frame_height)
+        
+        # Calculate a unique slot ID for MQTT topic
+        slot_id = calculate_slot_id(current_cell[0], current_cell[1])
 
-        # Detect cell change
+        # ---------------------------------------------------------
+        # 3. Selection Publishing (Hover)
+        # ---------------------------------------------------------
         if current_cell != last_selected_cell and (current_time - last_cell_select_time) > cell_select_cooldown:
-            print(f"Cell: R{current_cell[0]} C{current_cell[1]}")
+            # Topic: some_email/vending/led_control/<slot_id>
+            topic = f"{MQTT_TOPIC_PREFIX}/{slot_id}"
+            
+            print(f"Cell Select: R{current_cell[0]} C{current_cell[1]} (Slot {slot_id}) -> MQTT: {topic}")
+            
+            # Publish 'selected' or simply an empty message to indicate selection
+            mqtt_client.publish(topic, "selected")
+            
             last_selected_cell = current_cell
             last_cell_select_time = current_time
 
@@ -167,21 +237,30 @@ def process_frame(frame):
         distance = ((frame_index_x - frame_thumb_x)**2 + (frame_index_y - frame_thumb_y)**2)**0.5
         is_clicking = distance < click_threshold
 
+        # ---------------------------------------------------------
+        # 4. Click Publishing (Payment/Final Select)
+        # ---------------------------------------------------------
         if is_clicking and (current_time - last_click_time) > click_cooldown:
-            print(f"CLICK at R{current_cell[0]} C{current_cell[1]}")
+            # Topic: some_email/vending/led_control/select
+            topic = f"{MQTT_TOPIC_PREFIX}/select"
+            
+            # We publish the SLOT ID as the payload so the receiver knows WHAT was clicked
+            payload = str(slot_id)
+            
+            print(f"CLICK at Slot {slot_id} -> MQTT: {topic} Payload: {payload}")
+            mqtt_client.publish(topic, payload)
+            
             last_click_time = current_time
 
         # Populate Result
         result['hand_detected'] = True
-        result['cell'] = {'row': current_cell[0], 'col': current_cell[1], 'total_cols': current_cell[2]}
+        result['cell'] = {'row': current_cell[0], 'col': current_cell[1], 'total_cols': current_cell[2], 'slot_id': slot_id}
         result['click'] = is_clicking
         result['finger_distance'] = int(distance)
 
         # --- Drawing Visuals ---
-        # Draw fingertips
         cv2.circle(frame, (frame_index_x, frame_index_y), 8, (0, 255, 255), -1)
         cv2.circle(frame, (frame_thumb_x, frame_thumb_y), 8, (0, 255, 255), -1)
-        # Draw line between fingers
         cv2.line(frame, (frame_index_x, frame_index_y), (frame_thumb_x, frame_thumb_y), (255, 0, 255), 2)
 
         # Highlight Cell
@@ -227,20 +306,16 @@ def udp_server_worker():
         try:
             data, _ = sock.recvfrom(MAX_UDP_PACKET_SIZE)
             
-            # 1. Detect start of JPEG (0xFF 0xD8)
             if data.startswith(b'\xff\xd8'):
                 frame_buffer = data
-            # 2. Append chunks
             else:
                 frame_buffer += data
 
-            # 3. Detect end of JPEG (0xFF 0xD9)
             if frame_buffer.endswith(b'\xff\xd9'):
                 nparr = np.frombuffer(frame_buffer, np.uint8)
                 frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
                 if frame is not None:
-                    # PROCESS FRAME IMMEDIATELY
                     result, processed_frame = process_frame(frame)
                     
                     with frame_lock:
@@ -253,7 +328,6 @@ def udp_server_worker():
             print(f"UDP Error: {e}")
             continue
 
-# Start UDP thread in background
 Thread(target=udp_server_worker, daemon=True).start()
 
 
@@ -285,7 +359,7 @@ def index():
     return '''
     <html><head><title>UDP Hand Tracking</title></head>
     <body style="background-color:#222;color:white;font-family:Arial;">
-        <h1>ESP32 UDP Stream + MediaPipe</h1>
+        <h1>ESP32 UDP Stream + MediaPipe + MQTT</h1>
         <img src="/video_stream" width="640" height="480">
         <p>Ensure your ESP32 is running the UDP code.</p>
     </body></html>
@@ -294,5 +368,6 @@ def index():
 if __name__ == '__main__':
     print("="*50)
     print("ESP32 UDP + MediaPipe Server Running")
+    print("MQTT Active on: " + MQTT_TOPIC_PREFIX)
     print("="*50)
     app.run(host='0.0.0.0', port=5000, debug=False, threaded=True)

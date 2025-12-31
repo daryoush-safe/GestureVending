@@ -5,11 +5,11 @@
 #define CAMERA_MODEL_AI_THINKER
 #include "camera_pins.h"
 
-const char* ssid = "Kalle mahi khor";
-const char* password = "pjtr8569";
+const char* ssid = "Alos";
+const char* password = "alos12345";
 
 // Replace with your laptop's IP address
-const char* serverUrl = "http://10.143.138.111:5000/video_feed";
+const char* serverUrl = "http://10.79.13.111:5000/video_feed";
 
 // Frame capture interval (milliseconds)
 const int captureInterval = 100; // 10 FPS
