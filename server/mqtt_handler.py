@@ -4,6 +4,16 @@ import json
 import config
 import grid_manager
 
+# MQTT Topics:
+# - vending/config/grid: Receives grid configuration
+#   Message structure:
+#   {
+#     "rows": 6,                    # Total number of rows
+#     "cols_double": 5,             # Number of columns in double-width rows
+#     "cols_single": 10,            # Number of columns in single-width rows  
+#     "double_row_indices": [0,1,3] # Indices of rows that use double-width columns
+#   }
+
 client = mqtt.Client()
 
 def on_connect(client, userdata, flags, rc):
