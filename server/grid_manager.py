@@ -1,31 +1,42 @@
-# grid_manager.py
 import cv2
 
-# Default: 6 Rows. Row 0 is 5 cols, Rows 1-5 are 10 cols
-grid_layout = [5, 10, 10, 10, 10, 10] 
+# Default Layout (can be overwritten by update_grid_layout)
+# Logic: integers represent number of columns in that row
+grid_layout = [] 
 
 def update_grid_layout(config):
-    """Regenerates the grid_layout list based on MQTT config."""
+    """
+    Regenerates the grid_layout list based on new MQTT config logic.
+    """
     global grid_layout
     try:
-        total_rows = int(config.get('rows', 6))
-        cols_double = int(config.get('cols_double', 5))
-        cols_single = int(config.get('cols_single', 10))
+        total_slots = int(config.get('NumOfSlots', 60))
+        # "NumOfDoubleSlots" in user logic = Count of rows with 10 objects
+        num_10_col_rows = int(config.get('NumOfDoubleSlots', 0))
         
-        double_indices = config.get('double_row_indices', [0])
+        # Calculate total rows (always groups of 10 IDs per row)
+        total_rows = total_slots // 10
+        
+        # Calculate how many top rows are 5-column (the "others")
+        num_5_col_rows = total_rows - num_10_col_rows
         
         new_layout = []
-        for r in range(total_rows):
-            if r in double_indices:
-                new_layout.append(cols_double)
-            else:
-                new_layout.append(cols_single)
+        
+        # 1. Fill Top Rows (5 columns, IDs 0, 2, 4, 6, 8)
+        for _ in range(num_5_col_rows):
+            new_layout.append(5)
+            
+        # 2. Fill Bottom Rows (10 columns, IDs 0-9)
+        for _ in range(num_10_col_rows):
+            new_layout.append(10)
         
         grid_layout = new_layout
-        print(f"Grid Layout Updated: {grid_layout}")
+        print(f"Grid Layout Updated: {grid_layout} (Total Rows: {total_rows})")
         
     except Exception as e:
         print(f"Error parsing grid config: {e}")
+        # Fallback default if error
+        grid_layout = [5, 10, 10, 10, 10, 10]
 
 def get_grid_cell(x, y, width, height):
     global grid_layout
@@ -50,14 +61,29 @@ def get_grid_cell(x, y, width, height):
     return (row, col, cols_in_this_row)
 
 def calculate_slot_id(row, col):
+    """
+    Calculates Slot ID based on Row and Col.
+    Rows are always indexed in blocks of 10.
+    
+    - If Row is 5-col: Col 0->ID 0, Col 1->ID 2, Col 2->ID 4...
+    - If Row is 10-col: Col 0->ID 0, Col 1->ID 1...
+    """
     global grid_layout
-    slot_id = 0
-    # Sum of all slots in previous rows
-    for r in range(row):
-        slot_id += grid_layout[r]
-    # Add current column (1-based index)
-    slot_id += (col + 1)
-    return slot_id - 1
+    if row >= len(grid_layout): return 0
+
+    cols_in_row = grid_layout[row]
+    
+    # Base ID is always row * 10 (e.g., Row 0 starts at 0, Row 1 starts at 10)
+    base_id = row * 10
+    
+    if cols_in_row == 5:
+        # Wide slots (Index 0, 2, 4, 6, 8)
+        offset = col * 2
+    else:
+        # Standard slots (Index 0, 1, 2...9)
+        offset = col
+        
+    return base_id + offset
 
 def draw_grid(frame):
     global grid_layout

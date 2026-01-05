@@ -1,0 +1,1036 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7176
+load:0x40078000,len:15564
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.3.1-dirty 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Jan  3 2026 02:18:24[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (36) boot: chip revision: v3.1[0m
+[0;32mI (40) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (49) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (70) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (85) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=28e30h (167472) map[0m
+[0;32mI (162) esp_image: segment 1: paddr=00038e58 vaddr=3ffb0000 size=067cch ( 26572) load[0m
+[0;32mI (172) esp_image: segment 2: paddr=0003f62c vaddr=40080000 size=009ech (  2540) load[0m
+[0;32mI (174) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=9a038h (630840) map[0m
+[0;32mI (395) esp_image: segment 4: paddr=000da060 vaddr=400809ec size=1c5ach (116140) load[0m
+[0;32mI (455) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (456) boot: Disabling RNG early entropy source...[0m
+[0;32mI (467) quad_psram: This chip is ESP32-D0WD[0m
+[0;32mI (469) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (470) esp_psram: Speed: 40MHz[0m
+[0;32mI (471) esp_psram: PSRAM initialized, cache is in low/high (2-core) mode.[0m
+[0;33mW (479) esp_psram: Virtual address not enough for PSRAM, map as much as we can. 4MB is mapped[0m
+[0;32mI (488) cpu_start: Multicore app[0m
+[0;32mI (1397) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (1405) cpu_start: Pro cpu start user code[0m
+[0;32mI (1406) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (1406) app_init: Application information:[0m
+[0;32mI (1409) app_init: Project name:     gesture_vending[0m
+[0;32mI (1414) app_init: App version:      v5.3.1-dirty[0m
+[0;32mI (1420) app_init: Compile time:     Jan  3 2026 02:37:38[0m
+[0;32mI (1426) app_init: ELF file SHA256:  220a471ef...[0m
+[0;32mI (1431) app_init: ESP-IDF:          v5.3.1-dirty[0m
+[0;32mI (1437) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (1441) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (1446) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (1452) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1459) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (1465) heap_init: At 3FFBAB58 len 000254A8 (149 KiB): DRAM[0m
+[0;32mI (1471) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (1478) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (1484) heap_init: At 4009CF98 len 00003068 (12 KiB): IRAM[0m
+[0;32mI (1491) esp_psram: Adding pool of 4096K of PSRAM memory to heap allocator[0m
+[0;32mI (1499) spi_flash: detected chip: generic[0m
+[0;32mI (1503) spi_flash: flash io: dio[0m
+[0;33mW (1507) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;33mW (1520) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (1532) main_task: Started on CPU0[0m
+[0;32mI (1542) esp_psram: Reserving pool of 64K of internal memory for DMA/internal allocations[0m
+[0;32mI (1542) main_task: Calling app_main()[0m
+[0;32mI (1592) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (1592) CAMERA_UDP: ESP_WIFI_MODE_STA[0m
+[0;32mI (1602) wifi:wifi driver task: 3ffd2a8c, prio:23, stack:6656, core=0[0m
+[0;32mI (1622) wifi:wifi firmware version: ccaebfa[0m
+[0;32mI (1622) wifi:wifi certification version: v7.0[0m
+[0;32mI (1622) wifi:config NVS flash: enabled[0m
+[0;32mI (1622) wifi:config nano formating: disabled[0m
+[0;32mI (1622) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (1632) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1632) wifi:Init management short buffer num: 32[0m
+[0;32mI (1642) wifi:Init static tx buffer num: 16[0m
+[0;32mI (1642) wifi:Init tx cache buffer num: 32[0m
+[0;32mI (1642) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1652) wifi:Init static rx buffer num: 10[0m
+[0;32mI (1652) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (1662) wifi_init: rx ba win: 6[0m
+[0;32mI (1662) wifi_init: accept mbox: 6[0m
+[0;32mI (1662) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1672) wifi_init: udp mbox: 6[0m
+[0;32mI (1672) wifi_init: tcp mbox: 6[0m
+[0;32mI (1672) wifi_init: tcp tx win: 5760[0m
+[0;32mI (1682) wifi_init: tcp rx win: 5760[0m
+[0;32mI (1682) wifi_init: tcp mss: 1440[0m
+[0;32mI (1692) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1692) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1702) phy_init: phy_version 4830,54550f7,Jun 20 2024,14:22:08[0m
+[0;32mI (1782) wifi:mode : sta (88:57:21:e0:8b:78)[0m
+[0;32mI (1782) wifi:enable tsf[0m
+[0;32mI (1792) gpio: GPIO[25]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2 [0m
+[0;32mI (1792) cam_hal: cam init ok[0m
+[0;32mI (1802) sccb: pin_sda 26 pin_scl 27[0m
+[0;32mI (1802) sccb: sccb_i2c_port=1[0m
+[0;32mI (1812) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (1812) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (2622) gpio: GPIO[32]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (2652) camera: Camera PID=0x26 VER=0x42 MIDL=0x7f MIDH=0xa2[0m
+[0;32mI (2652) camera: Detected OV2640 camera[0m
+[0;32mI (2652) camera: Detected camera at address=0x30[0m
+[0;32mI (3112) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (3172) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (3172) cam_hal: buffer_size: 32768, half_buffer_size: 4096, node_buffer_size: 2048, node_cnt: 16, total_cnt: 15[0m
+[0;32mI (3182) cam_hal: Allocating 61440 Byte frame buffer in PSRAM[0m
+[0;32mI (3182) cam_hal: Allocating 61440 Byte frame buffer in PSRAM[0m
+[0;32mI (3192) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (3192) cam_hal: cam config ok[0m
+[0;32mI (3202) ov2640: Set PLL: clk_2x: 0, clk_div: 0, pclk_auto: 0, pclk_div: 8[0m
+[0;32mI (3282) CAMERA_UDP: Starting UDP Stream to 10.217.4.111:5000[0m
+[0;32mI (3312) wifi:connected with Alos, aid = 3, channel 6, BW20, bssid = c6:dd:83:4b:f0:ed[0m
+[0;32mI (3312) wifi:security: WPA3-SAE, phy: bgn, rssi: -34[0m
+[0;32mI (3322) wifi:pm start, type: 1[0m
+
+[0;32mI (3322) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (3332) wifi:<ba-add>idx:0 (ifx:0, c6:dd:83:4b:f0:ed), tid:0, ssn:0, winSize:64[0m
+[0;32mI (3342) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (3342) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;31mE (3352) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (3382) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (3422) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (3462) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (3502) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (3542) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (3582) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (3622) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (3662) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (3702) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (3742) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (3782) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (3822) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (3862) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (3902) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (3942) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (3982) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (4022) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (4062) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (4102) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (4142) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (4182) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (4222) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (4262) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;31mE (4302) CAMERA_UDP: Error occurred during sending: errno 118[0m
+[0;32mI (4342) esp_netif_handlers: sta ip: 10.217.4.227, mask: 255.255.255.0, gw: 10.217.4.123[0m
+[0;32mI (4342) CAMERA_UDP: Connected! IP: 10.217.4.227[0m
+[0;31mE (4352) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (4382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (4422) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (4462) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (4592) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (4622) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (4662) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (4702) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (4742) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (4782) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (4822) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (4862) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (4902) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (4942) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (4982) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5022) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5062) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5102) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5142) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5182) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5222) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5262) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5302) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5352) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5422) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5462) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5502) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5542) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5582) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5622) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5662) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5702) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5742) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5782) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5822) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5862) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5902) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5942) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (5982) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6022) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6062) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6102) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6142) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6182) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6232) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6262) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6302) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6342) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6422) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6462) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6502) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6542) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6582) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6622) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6662) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6702) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6742) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6782) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6822) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6862) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6902) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6942) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (6982) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7022) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7062) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7102) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7142) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7182) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7222) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7262) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7302) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7342) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7422) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7462) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7502) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7542) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7582) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7622) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7662) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7702) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7742) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7782) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7822) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7862) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7902) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7942) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (7982) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8022) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8062) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8102) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8142) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8182) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8222) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8262) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8302) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8342) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8422) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8462) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8502) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8552) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8582) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8622) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8662) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8702) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8742) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8782) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8822) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8862) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8912) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8942) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (8992) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9022) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9062) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9102) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9142) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9182) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9222) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9262) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9302) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9342) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9422) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9462) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9502) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9542) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9582) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9622) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9662) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9702) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9742) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9782) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9822) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9862) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9902) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9942) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (9982) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10022) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10062) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10102) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10142) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10182) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10222) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10262) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10302) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10342) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10422) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10462) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10502) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10542) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10582) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10622) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10662) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10702) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10742) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10782) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10822) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10862) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10902) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10942) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (10982) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11022) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11062) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11102) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11142) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11182) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11222) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11262) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11302) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11342) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11422) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11462) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11502) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11542) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11582) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11622) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11662) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11702) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11742) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11782) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11822) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11862) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11902) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11942) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (11982) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12022) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12062) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12102) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12142) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12182) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12222) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12262) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12302) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12342) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12422) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12462) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12502) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12542) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12582) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12622) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12662) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12702) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12742) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12782) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12822) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12862) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12902) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12942) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (12982) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13022) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13062) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13102) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13142) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13182) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13222) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13262) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13302) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13342) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13422) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13462) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13502) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13542) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13582) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13622) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13662) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13702) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13742) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13782) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13822) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13862) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13902) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13942) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (13982) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14022) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14062) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14102) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14142) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14182) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14222) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14262) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14302) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14342) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14422) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14462) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14502) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14542) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14582) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14622) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14662) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14702) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14742) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14782) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14822) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14862) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14902) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14942) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (14982) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15022) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15062) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15102) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15142) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15182) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15222) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15262) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15302) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15342) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15422) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15462) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15502) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15542) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15582) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15622) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15662) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15702) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15742) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15782) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15822) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15862) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15902) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15942) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (15982) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16022) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16062) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16102) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16142) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16182) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16222) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16262) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16302) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16342) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16422) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16462) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16502) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16542) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16582) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16622) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16662) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16702) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16742) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16782) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16822) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16862) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16902) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16942) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (16982) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17022) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17062) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17102) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17142) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17182) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17222) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17262) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17302) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17342) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17412) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17462) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17502) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17542) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17582) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17612) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17662) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17702) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17782) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17822) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17862) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17902) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (17982) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18022) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18052) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18102) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18132) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18182) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18252) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18292) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18332) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18412) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18502) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18542) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18612) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18702) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18822) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18852) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18902) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (18972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19012) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19052) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19102) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19132) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19172) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19222) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19252) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19302) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19332) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19372) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19422) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19502) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19532) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19612) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19692) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19852) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19892) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (19972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20012) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20062) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20092) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20142) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20172) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20252) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20292) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20332) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20372) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20422) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20492) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20532) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20612) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20692) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20852) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20892) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (20972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21012) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21062) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21092) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21132) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21172) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21252) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21292) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21332) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21372) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21412) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21492) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21532) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21612) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21692) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21782) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21852) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21892) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (21972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22012) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22052) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22092) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22132) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22172) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22252) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22292) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22332) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22372) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22412) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22492) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22532) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22612) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22692) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22852) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22892) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (22972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23012) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23052) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23092) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23132) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23182) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23252) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23292) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23332) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23372) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23412) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23492) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23532) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23612) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23692) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23852) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23892) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (23972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24012) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24062) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24092) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24132) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24172) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24252) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24292) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24342) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24422) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24502) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24542) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24582) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24622) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24702) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24852) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24892) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (24972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25012) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25052) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25092) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25132) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25172) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25262) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25292) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25342) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25422) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25462) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25502) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25542) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25622) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25692) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25742) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25862) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25892) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25942) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (25972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26022) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26052) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26092) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26132) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26172) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26252) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26292) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26332) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26372) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26412) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26492) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26532) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26612) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26692) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (26812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (29702) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (29742) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (29782) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (29812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (30612) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (30652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (30702) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (30732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (30772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (30812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (30862) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (30892) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (30932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (30972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31012) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31052) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31102) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31132) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31172) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31252) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31292) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31332) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31372) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31412) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31492) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31532) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31612) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31692) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31852) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (31972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32052) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32092) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32132) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32172) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32252) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32292) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32332) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32412) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32532) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32612) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32692) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32742) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32852) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32892) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (32972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33012) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33052) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33092) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33132) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33172) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33252) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33292) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33332) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33372) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33412) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33492) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33532) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33612) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33692) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33852) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33892) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (33972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34012) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34052) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34092) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34132) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34172) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34252) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34292) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34332) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34372) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34412) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34492) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34532) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34612) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34692) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34742) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34852) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34892) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (34972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (35012) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (35052) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (35092) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (35132) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (35172) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (35212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (35252) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (35292) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (35332) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (35372) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (35412) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (35452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (35502) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (37862) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (37892) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (37932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (37972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38012) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38052) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38092) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38132) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38172) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38252) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38292) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38332) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38372) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38412) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38492) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38532) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38612) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38692) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38852) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38892) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (38972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39012) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39052) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39092) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39132) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39172) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39252) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39292) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39332) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39372) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39412) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39492) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39532) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39612) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39692) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39852) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (39972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (40012) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (40052) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (40452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (40492) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (40542) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (40572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (41332) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (41372) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (41412) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (41452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (41492) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (41532) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (41572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (41652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (41692) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (41732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (41772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (41812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (41852) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (41892) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (41932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (41972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42012) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42052) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42092) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42132) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42252) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42292) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42382) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42412) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42492) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42532) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42612) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42852) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42892) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (42972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43042) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43082) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43122) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43162) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43242) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43292) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43322) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43372) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43412) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43442) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43492) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43532) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43602) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43692) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43812) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43852) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43892) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43932) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (43972) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44012) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44042) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44132) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44252) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44292) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44332) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44372) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44412) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44452) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44492) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44522) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44652) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44692) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44762) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44802) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (44842) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (46092) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (46142) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (46172) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (46212) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (46692) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (46732) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (46772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (48722) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (48762) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (48802) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (48842) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (48882) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (48922) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (48962) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49002) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49042) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49082) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49122) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49162) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49202) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49242) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49282) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49322) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49372) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49412) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49442) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49482) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49532) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49572) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49612) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49642) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49682) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49722) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49762) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49802) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49842) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49882) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49922) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (49962) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50012) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50042) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50082) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50122) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50162) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50202) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50242) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50282) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50332) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50362) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50402) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50442) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50482) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50522) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50562) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50612) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50642) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50682) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50722) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50772) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50802) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50842) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50882) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50922) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (50962) CAMERA_UDP: Error occurred during sending: errno 12[0m
+[0;31mE (51002) CAMERA_UDP: Error occurred during sending: errno 12[0m

@@ -1,13 +1,12 @@
 services:
-  dari-server:
-    image: ghcr.io/kianyari/dari-server:latest
+  vending-gesture-server:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: dari-server
+    container_name: vending-gesture-server
     ports:
-      - "5001:5000/tcp" # Flask HTTP API (host:container)
-      - "5001:5000/udp" # UDP video frame reception (host:container)
+      - "5001:5000/tcp" # Flask HTTP API (host: container)
+      - "5001:5000/udp" # UDP video frame reception (host :container)
     environment:
       - PYTHONUNBUFFERED=1
       - MQTT_BROKER=${MQTT_BROKER}

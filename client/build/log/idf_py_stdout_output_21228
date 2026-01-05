@@ -1,0 +1,125 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7176
+load:0x40078000,len:15564
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.3.1-dirty 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Jan  3 2026 02:18:24[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (36) boot: chip revision: v3.1[0m
+[0;32mI (40) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (49) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (70) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (85) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=28ed0h (167632) map[0m
+[0;32mI (162) esp_image: segment 1: paddr=00038ef8 vaddr=3ffb0000 size=067cch ( 26572) load[0m
+[0;32mI (172) esp_image: segment 2: paddr=0003f6cc vaddr=40080000 size=0094ch (  2380) load[0m
+[0;32mI (174) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=9a0e0h (631008) map[0m
+[0;32mI (395) esp_image: segment 4: paddr=000da108 vaddr=4008094c size=1c64ch (116300) load[0m
+[0;32mI (456) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (456) boot: Disabling RNG early entropy source...[0m
+[0;32mI (468) quad_psram: This chip is ESP32-D0WD[0m
+[0;32mI (470) esp_psram: Found 8MB PSRAM device[0m
+[0;32mI (470) esp_psram: Speed: 40MHz[0m
+[0;32mI (472) esp_psram: PSRAM initialized, cache is in low/high (2-core) mode.[0m
+[0;33mW (479) esp_psram: Virtual address not enough for PSRAM, map as much as we can. 4MB is mapped[0m
+[0;32mI (488) cpu_start: Multicore app[0m
+[0;32mI (1398) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (1406) cpu_start: Pro cpu start user code[0m
+[0;32mI (1406) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (1406) app_init: Application information:[0m
+[0;32mI (1409) app_init: Project name:     gesture_vending[0m
+[0;32mI (1415) app_init: App version:      v5.3.1-dirty[0m
+[0;32mI (1420) app_init: Compile time:     Jan  3 2026 02:37:38[0m
+[0;32mI (1426) app_init: ELF file SHA256:  9688d1c95...[0m
+[0;32mI (1431) app_init: ESP-IDF:          v5.3.1-dirty[0m
+[0;32mI (1437) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (1442) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (1447) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (1452) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1459) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (1465) heap_init: At 3FFBAB58 len 000254A8 (149 KiB): DRAM[0m
+[0;32mI (1471) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (1478) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (1484) heap_init: At 4009CF98 len 00003068 (12 KiB): IRAM[0m
+[0;32mI (1491) esp_psram: Adding pool of 4096K of PSRAM memory to heap allocator[0m
+[0;32mI (1500) spi_flash: detected chip: generic[0m
+[0;32mI (1503) spi_flash: flash io: dio[0m
+[0;33mW (1507) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;33mW (1520) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (1532) main_task: Started on CPU0[0m
+[0;32mI (1542) esp_psram: Reserving pool of 64K of internal memory for DMA/internal allocations[0m
+[0;32mI (1542) main_task: Calling app_main()[0m
+[0;32mI (1592) gpio: GPIO[4]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (1592) CAMERA_UDP: Starting WiFi...[0m
+[0;32mI (1602) wifi:wifi driver task: 3ffd2ab4, prio:23, stack:6656, core=0[0m
+[0;32mI (1622) wifi:wifi firmware version: ccaebfa[0m
+[0;32mI (1622) wifi:wifi certification version: v7.0[0m
+[0;32mI (1622) wifi:config NVS flash: enabled[0m
+[0;32mI (1622) wifi:config nano formating: disabled[0m
+[0;32mI (1622) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (1632) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (1632) wifi:Init management short buffer num: 32[0m
+[0;32mI (1642) wifi:Init static tx buffer num: 16[0m
+[0;32mI (1642) wifi:Init tx cache buffer num: 32[0m
+[0;32mI (1642) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (1652) wifi:Init static rx buffer num: 10[0m
+[0;32mI (1652) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (1662) wifi_init: rx ba win: 6[0m
+[0;32mI (1662) wifi_init: accept mbox: 6[0m
+[0;32mI (1662) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1672) wifi_init: udp mbox: 6[0m
+[0;32mI (1672) wifi_init: tcp mbox: 6[0m
+[0;32mI (1672) wifi_init: tcp tx win: 5760[0m
+[0;32mI (1682) wifi_init: tcp rx win: 5760[0m
+[0;32mI (1682) wifi_init: tcp mss: 1440[0m
+[0;32mI (1692) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1692) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1702) phy_init: phy_version 4830,54550f7,Jun 20 2024,14:22:08[0m
+[0;33mW (1782) phy_init: saving new calibration data because of checksum failure, mode(0)[0m
+[0;32mI (1912) wifi:mode : sta (88:57:21:e0:8b:78)[0m
+[0;32mI (1912) wifi:enable tsf[0m
+[0;32mI (1912) CAMERA_UDP: Waiting for WiFi connection...[0m
+[0;32mI (1932) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (1932) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (3522) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (3532) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (3562) wifi:connected with Alos, aid = 3, channel 6, BW20, bssid = c6:dd:83:4b:f0:ed[0m
+[0;32mI (3562) wifi:security: WPA3-SAE, phy: bgn, rssi: -14[0m
+[0;32mI (3562) wifi:pm start, type: 1[0m
+
+[0;32mI (3562) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (3582) wifi:dp: 2, bi: 102400, li: 4, scale listen interval from 307200 us to 409600 us[0m
+[0;32mI (3582) wifi:AP's beacon interval = 102400 us, DTIM period = 2[0m
+[0;32mI (3582) wifi:<ba-add>idx:0 (ifx:0, c6:dd:83:4b:f0:ed), tid:0, ssn:0, winSize:64[0m
+[0;32mI (4572) esp_netif_handlers: sta ip: 10.217.4.227, mask: 255.255.255.0, gw: 10.217.4.123[0m
+[0;32mI (4572) CAMERA_UDP: Connected! IP: 10.217.4.227[0m
+[0;32mI (4572) CAMERA_UDP: WiFi Connected. Starting Camera & UDP.[0m
+[0;32mI (4582) gpio: GPIO[25]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2 [0m
+[0;32mI (4592) cam_hal: cam init ok[0m
+[0;32mI (4592) sccb: pin_sda 26 pin_scl 27[0m
+[0;32mI (4592) sccb: sccb_i2c_port=1[0m
+[0;32mI (4602) gpio: GPIO[32]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (4642) camera: Camera PID=0x26 VER=0x42 MIDL=0x7f MIDH=0xa2[0m
+[0;32mI (4642) camera: Detected OV2640 camera[0m
+[0;32mI (4642) camera: Detected camera at address=0x30[0m
+[0;32mI (4732) cam_hal: PSRAM DMA mode disabled[0m
+[0;32mI (4742) cam_hal: buffer_size: 32768, half_buffer_size: 4096, node_buffer_size: 2048, node_cnt: 16, total_cnt: 15[0m
+[0;32mI (4742) cam_hal: Allocating 61440 Byte frame buffer in PSRAM[0m
+[0;32mI (4752) cam_hal: Allocating 61440 Byte frame buffer in PSRAM[0m
+[0;32mI (4752) cam_hal: cam config ok[0m
+[0;32mI (4762) ov2640: Set PLL: clk_2x: 0, clk_div: 0, pclk_auto: 0, pclk_div: 8[0m
+[0;32mI (4842) CAMERA_UDP: Starting UDP Stream to 10.217.4.111:5000[0m

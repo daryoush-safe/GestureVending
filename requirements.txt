@@ -4,3 +4,4 @@ mediapipe==0.10.14
 paho-mqtt==1.6.1
 numpy==1.24.3
 protobuf>=4.25.3,<5
+python-dotenv==1.2.1

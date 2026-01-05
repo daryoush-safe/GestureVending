@@ -10,9 +10,9 @@ MQTT_BROKER = os.getenv('MQTT_BROKER')
 MQTT_PORT = int(os.getenv('MQTT_PORT', 8883))
 MQTT_USERNAME = os.getenv('MQTT_USERNAME')
 MQTT_PASSWORD = os.getenv('MQTT_PASSWORD')
-MQTT_TOPIC_SELECTING = f"{MQTT_USERNAME}/vending/control"
-MQTT_TOPIC_CONFIG = "vending/config/grid"
-# Message structure: {"rows": int, "cols_double": int, "cols_single": int, "double_row_indices": list[int]}
+MQTT_TOPIC_SELECTING = f"{MQTT_USERNAME}/Vending/Control"
+MQTT_TOPIC_CONFIG = f"{MQTT_USERNAME}/Vending/Status"
+# Message structure: {"is_boot": true, "Local_IP": "192.168.x.x", "Code_Version": "2.8", "ChipID": "ChipIDLow", "NumOfSlots": 50, "NumOfDoubleSlots": 5, "IsActive": true, "Input_Mode": 1}
 
 # Validate required variables
 if not all([MQTT_BROKER, MQTT_USERNAME, MQTT_PASSWORD]):
@@ -26,4 +26,4 @@ MAX_UDP_PACKET_SIZE = 65536
 # Interaction Configuration
 CELL_SELECT_COOLDOWN = 0.3
 CLICK_COOLDOWN = 0.5
-CLICK_THRESHOLD = 40
+CLICK_THRESHOLD = 0.4
